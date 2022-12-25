@@ -20,10 +20,16 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'font-awesome-rails'
+gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
+gem 'popper_js', '~> 2.11', '>= 2.11.6'
+gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+gem 'activestorage'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
