@@ -253,7 +253,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails (~> 1.1, >= 1.1.5)
   jbuilder (~> 2.7)
-  jquery-rails (~> 4.5, >= 4.5.1)
+  jquery-rails
   listen (~> 3.3)
   pg (~> 1.1)
   popper_js (~> 2.11, >= 2.11.6)

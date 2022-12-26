@@ -1,0 +1,12 @@
+<h1 class="mt-5">Edit Sub-Category</h1>
+
+<div class="col-md-6">
+    <%= form_with model: @sub_category, url:{:action => 'update', :id => @sub_category.id, :category_id => @sub_category.category.id}, method: :patch, local: true do |f| %>
+ 
+        <%= render(:partial=> 'form', :locals => {:f => f}) %>
+            <div class="form-group mb-3">
+                <%= submit_tag 'Update' , class:'btn btn-primary' %>
+            </div>
+            <% end %>
+</div>
+<%= link_to 'Back' , :back %>

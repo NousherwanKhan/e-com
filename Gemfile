@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'font-awesome-rails'
-gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
+gem 'jquery-rails'
 gem 'popper_js', '~> 2.11', '>= 2.11.6'
 gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
 

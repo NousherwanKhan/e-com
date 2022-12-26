@@ -1,0 +1,14 @@
+<h1 class="mt-5">New Category</h1>
+
+<div class="col-md-6">
+    <%= form_with model: @category, url: {:action=> 'create'}, method: :post, local: true do |f| %>
+
+        <%= render(:partial=>'form' , :locals=>{:f => f}) %>
+
+
+            <div class="form-group mb-3">
+                <%= submit_tag 'Create' , class:'btn btn-primary' %>
+            </div>
+            <% end %>
+</div>
+<%= link_to 'Back' , categories_path %>

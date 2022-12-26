@@ -1,0 +1,28 @@
+<h1>Categories</h1>
+<%= link_to 'New Categories' , new_category_path, class:'btn btn-secondary' %>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @categories.each do |category| %>
+                <tr>
+                    <td>
+                        <%= category.name %>
+                    </td>
+                    <td class="d-flex gap-1">
+                    <%= link_to 'Sub-Categories', sub_categories_path(:category_id => category.id), class:'btn-sm btn btn-warning' %>
+                    <%= link_to 'Edit', edit_category_path(category),class:'btn-sm btn btn-primary' %>
+                    <%= button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?'}, class:'btn-sm btn btn-danger' %>
+                </td>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
+
+    <br>

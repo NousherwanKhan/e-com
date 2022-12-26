@@ -10,8 +10,26 @@
     <%= javascript_importmap_tags %>
 
   </head>
-
   <body>
-    <%= yield %>
+    <% if !flash[:success].blank? %>
+      <div class="alert alert-success">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%= flash[:success] %>
+      </div>
+      <% end %>
+        <% if !flash[:error].blank? %>
+          <div class="alert alert-warning">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <%= flash[:error] %>
+          </div>
+          <% end %>
+
+          
+
+    <%= render(:partial => 'layouts/navbar') %>
+    <div class="container">
+
+      <%= yield %>
+    </div>
   </body>
 </html>
