@@ -1,6 +1,7 @@
 class SubCategoriesController < ApplicationController
-  
-before_action :find_category
+
+  before_action :authenticate_user!
+  before_action :find_category
 
   def index
     @sub_categories = @category.sub_categories.all

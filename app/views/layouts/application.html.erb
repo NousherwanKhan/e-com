@@ -11,22 +11,31 @@
 
   </head>
   <body>
-    <% if !flash[:success].blank? %>
-      <div class="alert alert-success">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <%= flash[:success] %>
-      </div>
-      <% end %>
-        <% if !flash[:error].blank? %>
-          <div class="alert alert-warning">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <%= flash[:error] %>
-          </div>
-          <% end %>
+
 
     <%= render(:partial => 'layouts/navbar') %>
     <div class="container">
 
+          <% if !flash[:success].blank? %>
+            <div class="alert alert-success">
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <%= flash[:success] %>
+            </div>
+            <% end %>
+              <% if !flash[:error].blank? %>
+                <div class="alert alert-warning">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  <%= flash[:error] %>
+                </div>
+                <% end %>
+          
+                  <p class="notice">
+                    <%= notice %>
+                  </p>
+                  <p class="alert">
+                    <%= alert %>
+                  </p>
+                  
       <%= yield %>
     </div>
   </body>
