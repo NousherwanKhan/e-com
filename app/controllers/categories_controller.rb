@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 
+  before_action :admin_access
   before_action :authenticate_user!
   
   def index

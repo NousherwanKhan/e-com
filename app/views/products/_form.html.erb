@@ -2,14 +2,40 @@
   <div class="mb-3">
     <%= f.label(:name) %>
       <%= f.text_field :name, class: "form-control" %>
+      <% if @product.errors.any? %>
+        <% @product.errors.full_messages_for(:name).each do |error| %>
+          <span>
+            <li class="text-danger">
+              <%= error %>
+            </li>
+          </span>
+          <% end %>
+            <% end %>
   </div>
   <div class="mb-3">
     <%= f.label(:price) %>
       <%= f.text_field :price, class: "form-control" %>
+      <% if @product.errors.any? %>
+        <% @product.errors.full_messages_for(:price).each do |error| %>
+          <span>
+            <li class="text-danger">
+              <%= error %>
+            </li>
+          </span>
+          <% end %>
+            <% end %>
   </div>
   <div class="mb-3">
     <%= f.label(:image) %>
       <%= f.file_field :image, class: "form-control" %>
+      <% if @product.errors.any? %>
+        <% @product.errors.full_messages_for(:image).each do |error| %>
+          <span>
+            <li class="text-danger">
+              <%= error %>
+            </li>
+          </span>
+          <% end %>
+            <% end %>
   </div>
-  <!-- < % = f.hidden_field :user_id, value: current_admin_user.id , class: "form-control" if current_admin_user %> -->
 

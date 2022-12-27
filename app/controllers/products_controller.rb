@@ -1,63 +1,48 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :admin_access
 
-  # GET /products or /products.json
   def index
     @products = Product.all
   end
 
-  # GET /products/1 or /products/1.json
   def show
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
-  def edit
-
-  end
-
-  # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }    
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to(:action => 'index')
+    else
+      render(:action => 'new')
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
+  def edit
+    @product = Product.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to(:action => 'index')
+    else
+      render('edit')
     end
   end
 
-  # DELETE /products/1 or /products/1.json
   def destroy
-    @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
-    end
+    @product.Product.find(params[:id]).destroy
   end
 
   private
     
-    # Only allow a list of trusted parameters through.
     def product_params
-      params.fetch(:product, {})
+      params.require(:product).permit(:name, :price, :image)
     end
 end
