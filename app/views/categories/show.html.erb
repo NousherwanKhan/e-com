@@ -1,2 +1,37 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div>
+<%= link_to 'Back' , :back, class:'btn btn-light mb-3' %>
+
+<div class="float-end mt-1">
+    <%= form_with model: @category, :action=> category_path, method: :get do |f| %>
+        <span>
+            <%= link_to('X', :back, class:'text-decoration-none text-dark') if !params[:search].blank? %>
+        </span>
+        <%= f.text_field :search, :autocomplete=>"off", class:"" %>
+            <%= submit_tag 'Search' ,class:"btn btn-outline-success" %>
+                <% end %>
+</div>
+
+</div>
+<h1>
+    <%= @category.name %>
+</h1>
+
+<div class="row mt-5">
+
+    <% @category.products.each do |product| %>
+        <div class="card col-md-3 me-auto mb-4" style="width: 18rem;">
+            <%= image_tag product.image, :size=> "500x250", class:'card-img-top' %>
+                <div class="card-body">
+                    <h5 class="card-title">Title <%= product.name %>
+                    </h5>
+                    <p class="card-text"><b>PRICE </b>
+                        <%= product.price %>$
+                    </p>
+                </div>
+                <div class="card-body">
+                    <%= link_to 'View Product' , product, class:'card-link pe-auto' %>
+
+                </div>
+        </div>
+        <% end %>
+</div>

@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
+  root 'publics#index'
+
 
   devise_for :users, controllers: {
         sessions: 'users/sessions'
       }
-  root 'publics#index'
-
+  get 'carts/empty_all', to: 'carts#delete_all', as: 'delete_cart'
+  resources :carts
   resources :categories
-  resources :sub_categories
   resources :products
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

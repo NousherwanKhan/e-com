@@ -1,0 +1,20 @@
+
+    <!-- <span>< % = @cart.product.category.name %>/< % =  @cart.product.name %>/<span> -->
+
+<%= form_with model: @cart, url: {:controller=> 'carts', :action=> 'create'}, method: :post, local:
+    true do
+    |f| %>
+    
+    <%= render(:partial => 'form', :locals=>{:f => f}) %>
+    <div class="card col-4">
+        <h1 class="card card-header col-12">Cart</h1>
+        <div class="card-body">
+            <p class="card-text">Confirm Your Cart!!!</p>
+        </div>
+            <div class="form-group mb-3 card-footer">
+                <%= submit_tag 'Confirm' , class:'btn btn-primary' %>
+                <%= link_to "Cancel", root_path, :class => 'btn btn-secondary' %>
+                <% end %>
+            </div>
+    </div>
+   

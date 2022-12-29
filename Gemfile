@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'popper_js', '~> 2.11', '>= 2.11.6'
 gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
 gem 'devise'
+gem "font-awesome-rails"
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

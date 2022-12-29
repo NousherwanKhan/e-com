@@ -1,8 +1,14 @@
 <%= link_to 'Back' , :back, class:'btn btn-light' %>
 
 <h1>Editing Product</h1>
+<%= form_with model: @product, url: product_path(@product, :category_id => @category.id), method: :patch, local: true do |f| %>
 
-<%= render 'form', product: @product %>
+<%= render(:partial=>'form' , :locals=>{:f => f}) %>
+
+    <div class="form-group mb-3">
+        <%= submit_tag 'Update' , class:'btn btn-primary' %>
+    </div>
+    <% end %>
 
 <%= link_to 'Show', @product %> |
 <%= link_to 'Back', products_path %>

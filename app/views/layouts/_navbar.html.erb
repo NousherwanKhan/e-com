@@ -1,42 +1,61 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <%= link_to 'E-Commerce', root_path, class:'navbar-brand' %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Cart</a>
-                </li>
-                <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to 'Admin', categories_path, class:'nav-link active' if current_user.role_id == 1 %>
-                </li>
-                <% end %>
-            </ul>
-            <div class="btn-group">
-                <button class="btn btn-light dropdown-toggle me-1" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <%= current_user.username if user_signed_in? %>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <%= link_to 'Sign In', new_user_session_path, class:"dropdown-item" if !user_signed_in? %>         
+        <%= link_to 'E-Commerce' , root_path, class:'navbar-brand' %>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <% Category.all.each do |category|  %>
+                                <li class="dropdown-item">
+                                    <%= link_to category.name, category, class:'text-decoration-none text-dark' %> 
+                                </li>
+                            <% end %>
+                        </ul>
                     </li>
-                    <li>
-                        <%= link_to 'Sign Up' , new_user_registration_path, class:"dropdown-item" if !user_signed_in? %>
-                    </li>
-                    <li>
-                    <%= button_to 'Logout' , destroy_user_session_path, method: :delete,class:"dropdown-item" %>
-                    </li>
+                    <% if user_signed_in? %>
+                        <li class="nav-item text-light d-flex">
+                            <%= link_to '' , carts_path(:user_id=> current_user.id), class:'fa fa-shopping-cart nav-link
+                                active' if current_user.role_id==2 %>
+                                <span>
+                                    <%= @user.carts.count if current_user.role_id==2 %>
+                                </span>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Admin' , categories_path, class:'nav-link active' if current_user.role_id==1 %>
+                        </li>
+                        <% end %>
                 </ul>
+                <div class="btn-group">
+                    <button class="btn btn-light dropdown-toggle me-1" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <%= current_user.username if user_signed_in? %>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li>
+                            <%= link_to 'Sign In' , new_user_session_path, class:"dropdown-item" if !user_signed_in? %>
+                        </li>
+                        <li>
+                            <%= link_to 'Sign Up' , new_user_registration_path, class:"dropdown-item" if
+                                !user_signed_in? %>
+                        </li>
+                        <li>
+                            <%= link_to 'Edit Profile' , edit_user_registration_path,class:"dropdown-item" if user_signed_in? %>
+                        </li>
+                        <li>
+                            <%= button_to 'Logout' , destroy_user_session_path, method: :delete,class:"dropdown-item" if
+                                user_signed_in? %>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
     </div>
 </nav>

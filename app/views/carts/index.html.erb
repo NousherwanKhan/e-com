@@ -1,0 +1,41 @@
+<%= link_to 'Back' , root_path, class:'btn btn-light' %>
+
+
+    <h1>Cart</h1>
+    <%= link_to 'Empty Cart', delete_cart_path(:user_id => current_user.id), class:'btn-sm btn btn-danger' %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Product</th>
+                    <th>Category ID</th>
+                    <th>Buyer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @carts.each do |cart| %>
+                    <tr>
+                        <td>
+                            <%= cart.id %>
+                        </td>
+                        <td>
+                          <%= cart.product.name %>
+                        </td>
+                        <td>
+                          <%= cart.product.category.name %>
+                        </td>
+                        <td>
+                            <%= cart.user.email %>
+                        </td>
+                        <td class="d-flex gap-1">
+                        <%= button_to 'Destroy' , cart, method: :delete, data: {
+                        confirm: 'Are you sure?' }, class:'btn-sm btn btn-danger' %>
+                        </td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table>
+
+        <br>

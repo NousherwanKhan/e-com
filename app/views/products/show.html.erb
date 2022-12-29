@@ -1,3 +1,25 @@
+<%= link_to 'Back' , :back, class:'btn btn-light mb-5' %>
 
-<!-- < % = link_to 'Edit', edit_product_path(@product) %> | -->
-<%= link_to 'Back', products_path %>
+    <!-- <span>< % = @product.category.name %>/<span> -->
+        
+    <div class="container d-flex gap-5">
+        <div class="card col-md-3 me-auto mb-4" style="width: 25rem;">
+            <%= image_tag @product.image, :size=> "400x400", class:'card-img-top' %>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title mt-3">Title <%= @product.name %>
+            </h5>
+            <p class="card-text mt-5"><b>PRICE </b>
+                <%= @product.price %>
+            </p>
+            <p class="card-text mt-2"><b>CATEGORY </b>
+                <%= @product.category.name %>
+            </p>
+            <% if user_signed_in? %>
+                <% if current_user.role_id==2 %>
+
+                <%= link_to 'Add to Cart', new_cart_path(:product_id => @product.id, :user_id => current_user.id, :category_id => @product.category.id) %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>

@@ -16,10 +16,10 @@
     <%= render(:partial => 'layouts/navbar') %>
     <div class="container">
 
-          <% if !flash[:success].blank? %>
+          <% if !flash[:notice].blank? %>
             <div class="alert alert-success">
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              <%= flash[:success] %>
+              <%= flash[:notice] %>
             </div>
             <% end %>
               <% if !flash[:error].blank? %>
@@ -28,13 +28,6 @@
                   <%= flash[:error] %>
                 </div>
                 <% end %>
-          
-                  <p class="notice">
-                    <%= notice %>
-                  </p>
-                  <p class="alert">
-                    <%= alert %>
-                  </p>
                   
       <%= yield %>
     </div>

@@ -19,9 +19,10 @@
                         <%= category.name %>
                     </td>
                     <td class="d-flex gap-1">
-                    <%= link_to 'Products', products_path(:category_id => category.id), class:'btn-sm btn btn-warning' %>
+                    <%= link_to 'Show Products' , category, class:'btn-sm btn btn-warning' %>
+                    <%= link_to 'Create Products', products_path(:category_id => category.id), class:'btn-sm btn btn-warning' %>
                     <%= link_to 'Edit', edit_category_path(category),class:'btn-sm btn btn-primary' %>
-                    <%= button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?'}, class:'btn-sm btn btn-danger' %>
+                    <%= button_to 'Destroy', category, method: :delete, data: { turbo_confirm: 'Are you sure?'}, class:'btn-sm btn btn-danger' %>
                 </td>
                 </tr>
                 <% end %>

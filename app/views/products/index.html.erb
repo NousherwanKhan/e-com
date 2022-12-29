@@ -1,15 +1,15 @@
 <%= link_to 'Back', categories_path, class:'btn btn-light' %>
 
 <h1>Products</h1>
-<%= link_to 'New Product' , new_product_path, class:'btn btn-secondary' %>
+<%= link_to 'New Product' , new_product_path(:category_id => @category.id), class:'btn btn-secondary' %>
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Price</th>
+      <th>Image</th>
       <th>Category</th>
-      <th>Sub_Category</th>
       <th colspan="2">Action</th>
     </tr>
   </thead>
@@ -17,9 +17,20 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= link_to 'Show', product %></td>
-        <!-- <td>< % = link_to 'Edit', edit_product_path(product) %></td> -->
-        <!-- <td>< % = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td><%= product.name %></td>
+        <td> 
+          <%= product.price %>$
+        </td>
+        <td>
+          <%= image_tag product.image_as_thumbnails %>
+        </td>
+        <td>
+          <%= product.category.name %>
+        </td>
+        <td class="d-flex gap-1"><%= link_to 'Edit', edit_product_path(product, :category_id => @category.id), class:'btn btn-info btn-sm' %>
+        <%= button_to 'Destroy' , {:action => 'destroy', :id => product.id, :category_id => @category.id}, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class:'btn-sm btn btn-danger'%>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

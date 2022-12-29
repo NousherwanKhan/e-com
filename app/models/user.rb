@@ -1,10 +1,7 @@
 class User < ApplicationRecord
   
-
-
-  has_many :products, dependent: :destroy
   has_one :role
-  has_many :products
+  has_many :carts
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,5 +21,7 @@ class User < ApplicationRecord
                     :confirmation => true,
                     :uniqueness => true
   validates :password, :presence => true
+
+  validates :username, :presence => true
 
 end
