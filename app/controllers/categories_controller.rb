@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_action :admin_access, except: [:show]
   before_action :authenticate_user!, except: [:show]
   before_action :cart_count
+  
 
   
   def index
@@ -12,11 +13,21 @@ class CategoriesController < ApplicationController
   def show
     @categories = Category.all
     if params[:search].present?
-        @categories =  Product.where('name ILIKE ?', "%#{params[:search]}%")
+      @products =  Category.find(params[:id]).products.where('name ILIKE ?', "%#{params[:search]}%")
+    else
+        @category = Category.find(params[:id])
     end
-    @category = Category.find(params[:id])
   end
 
+  # def search 
+  #   if params[:search].present?
+  #       @category = Category.find(params[:id])
+  #       @products =  @category.products.where('name ILIKE ?', "%#{params[:search]}%")
+  #   end
+  #     render 'show'
+  # end
+
+  
   def new
     @category = Category.new
   end
@@ -56,4 +67,9 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 
+  # def find_category
+  #   if params[:category_id]
+  #     @category = Category.find(params[:category_id])
+  #   end
+  # end
 end

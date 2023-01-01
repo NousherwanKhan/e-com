@@ -2,7 +2,7 @@
 <%= link_to 'Back' , :back, class:'btn btn-light mb-3' %>
 
 <div class="float-end mt-1">
-    <%= form_with model: @category, :action=> category_path, method: :get do |f| %>
+    <%= form_with model: @public, :action=> category_path, method: :get do |f| %>
         <span>
             <%= link_to('X', :back, class:'text-decoration-none text-dark') if !params[:search].blank? %>
         </span>
@@ -13,11 +13,11 @@
 
 </div>
 <h1>
-    <%= @category.name %>
+    <%= @category.name if !@category.blank?%>
 </h1>
 
 <div class="row mt-5">
-
+    <% if !@category.blank? %>
     <% @category.products.each do |product| %>
         <div class="card col-md-3 me-auto mb-4" style="width: 18rem;">
             <%= image_tag product.image, :size=> "500x250", class:'card-img-top' %>
@@ -34,4 +34,27 @@
                 </div>
         </div>
         <% end %>
+        <% end %>
+
+    <% if @category.blank? %>
+    <p>
+        <%= 'No Record Found' if @products.empty? %>
+    </p>
+    <% @products.each do |product| %>
+        <div class="card col-md-3 me-auto mb-4" style="width: 18rem;">
+            <%= image_tag product.image, :size=> "500x250", class:'card-img-top' %>
+                <div class="card-body">
+                    <h5 class="card-title">Title <%= product.name %>
+                    </h5>
+                    <p class="card-text"><b>PRICE </b>
+                        <%= product.price %>$
+                    </p>
+                </div>
+                <div class="card-body">
+                    <%= link_to 'View Product' , product, class:'card-link pe-auto' %>
+                </div>
+        </div>
+    <% end %>
+    <% end %>
+
 </div>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       }
   get 'carts/empty_all', to: 'carts#delete_all', as: 'delete_cart'
   resources :carts
+
+  # get '/', to: 'categories#search', as: 'search'
   resources :categories
   resources :products
 

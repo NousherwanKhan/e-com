@@ -11,7 +11,9 @@
 <h1>All Products</h1>
 </div>
 <div class="row mt-5">
-    
+    <p>
+        <%= 'No Record Found' if @products.empty? %>
+    </p>
     <% @products.each do |product| %>
         <div class="card col-md-3 me-auto mb-4" style="width: 18rem;">
             <%= image_tag product.image, :size=> "500x250", class:'card-img-top' %>

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   
+  include UserValidation
+
   has_one :role
   has_many :carts
   
@@ -11,17 +13,5 @@ class User < ApplicationRecord
          :rememberable, 
          :validatable,
          :trackable
-
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-
-  validates :email, :presence => true,
-                    :length => { :maximum => 40},
-                    :format => VALID_EMAIL_REGEX,
-                    :confirmation => true,
-                    :uniqueness => true
-  validates :password, :presence => true
-
-  validates :username, :presence => true
 
 end
